@@ -1,9 +1,12 @@
 package ru.mirea.zhalyaletdinov_f_n.dialog;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.constraintlayout.widget.ConstraintSet;
 
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.DatePicker;
@@ -11,12 +14,15 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
+import com.google.android.material.snackbar.Snackbar;
+
 import java.text.DateFormat;
 import java.util.Calendar;
 
 public class MainActivity extends AppCompatActivity
         implements TimePickerDialog.OnTimeSetListener, DatePickerDialog.OnDateSetListener {
 
+    private ConstraintLayout constraintLayout;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,6 +53,12 @@ public class MainActivity extends AppCompatActivity
     }
     @Override
     public void onTimeSet(TimePicker timePicker, int hourOfDay, int minute) {
+        constraintLayout = findViewById(R.id.constraintLayout);
+        Snackbar.make(constraintLayout,
+                        hourOfDay + "h " + minute + "m",
+                        Snackbar.LENGTH_LONG)
+                .setTextColor(Color.YELLOW)
+                .show();
         TextView textView = findViewById(R.id.textView);
         textView.setText("Hour: " + hourOfDay + " Minute: " + minute);
     }
@@ -63,6 +75,10 @@ public class MainActivity extends AppCompatActivity
         c.set(Calendar.DAY_OF_MONTH, day);
 
         String currentDate = DateFormat.getDateInstance(DateFormat.FULL).format(c.getTime());
+        constraintLayout = findViewById(R.id.constraintLayout);
+        Snackbar.make(constraintLayout, currentDate, Snackbar.LENGTH_LONG)
+                .setTextColor(Color.YELLOW)
+                .show();
         TextView textView = findViewById(R.id.textView2);
         textView.setText(currentDate);
     }
