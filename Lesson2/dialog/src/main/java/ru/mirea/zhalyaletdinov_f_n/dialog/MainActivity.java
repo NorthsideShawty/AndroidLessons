@@ -82,4 +82,22 @@ public class MainActivity extends AppCompatActivity
         TextView textView = findViewById(R.id.textView2);
         textView.setText(currentDate);
     }
+
+    public void onClickShowMyProgressDialog(View view) {
+        MyProgressDialogFragment progressDialogFragment = new MyProgressDialogFragment();
+        progressDialogFragment.show(getSupportFragmentManager(), "progress dialog");
+    }
+
+    public void onProgressOkClicked() {
+        constraintLayout = findViewById(R.id.constraintLayout);
+        Snackbar.make(constraintLayout, "Вы нажали \"ОК\"", Snackbar.LENGTH_LONG)
+                .setTextColor(Color.YELLOW)
+                .show();
+    }
+    public void onProgressCloseClicked() {
+        constraintLayout = findViewById(R.id.constraintLayout);
+        Snackbar.make(constraintLayout, "Вы нажали \"Close\"", Snackbar.LENGTH_LONG)
+                .setTextColor(Color.YELLOW)
+                .show();
+    }
 }
