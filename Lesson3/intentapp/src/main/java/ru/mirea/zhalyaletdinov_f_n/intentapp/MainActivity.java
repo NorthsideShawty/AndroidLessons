@@ -18,7 +18,9 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+    }
 
+    public void onClickSendDate(View view) {
         TextView studNumTV = findViewById(R.id.StudNumTextView);
         String studNum = String.valueOf(studNumTV.getText().toString()
                 .charAt(studNumTV.getText().toString().length() - 1));
@@ -30,15 +32,9 @@ public class MainActivity extends AppCompatActivity {
         String dateString = sdf.format(new Date(dateInMillis));
         dtTV.setText(dateString);
 
-        Button sendDataBT = findViewById(R.id.dataSendButton);
-        sendDataBT.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent sendIntent = new Intent(MainActivity.this, SecondActivity.class);
-                sendIntent.putExtra("number", studNum);
-                sendIntent.putExtra("date", dateString);
-                startActivity(sendIntent);
-            }
-        });
+        Intent sendIntent = new Intent(MainActivity.this, SecondActivity.class);
+        sendIntent.putExtra("number", studNum);
+        sendIntent.putExtra("date", dateString);
+        startActivity(sendIntent);
     }
 }

@@ -16,3 +16,7 @@ rootProject.name = "Lesson3"
 include ':app'
 include ':intentapp'
 include ':sharer'
+include ':favouritebook'
+include ':systemintentsapp'
+include ':singlefragmentapp'
+include ':mireaproject'
